@@ -1,0 +1,17 @@
+#!/bin/bash
+SleepTime=2
+MaxCount=100
+for Count in {000..1000}; do
+  #SECONDS=0
+  START=$(date +"%s.%3N")
+  echo $Count
+  x=$(date +%Y%m%d-%H%M%S)
+  touch file-$Count-$x
+  sleep $SleepTime
+  END=$(date +"%s.%3N")
+  TIME=$(echo "$END - $START" | bc)
+  echo "Seconds: $TIME"
+  if [ "$Count" -eq "$MaxCount" ]; then
+    exit
+  fi
+done
